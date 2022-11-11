@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "synida\\AwsEventBridgeWrapper": "src"
+            "synida\\AwsEventBridgeWrapper\\": "src"
         }
     },
     "require-dev": {
