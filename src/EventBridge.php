@@ -51,7 +51,7 @@ class EventBridge
     }
 
     /**
-     * Executes the previously constructed put-events command
+     * Executes the put-events command
      *
      * @return string|false|null
      * @author Synida Pry
