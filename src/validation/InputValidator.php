@@ -23,7 +23,7 @@ class InputValidator
      */
     public function validateInput(array $options): void
     {
-        if (!isset($options['entries']) || !file_exists($options['entries'])) {
+        if (!isset($options['entries'])) {
             throw new InvalidInputException('entries parameter must be sent');
         }
     }
