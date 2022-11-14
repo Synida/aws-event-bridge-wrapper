@@ -5,7 +5,7 @@ Minimalist package to support the `aws events put-events --entries <entries>` co
 ### Basic usage:
 
 ```
-$awsEBCli = new EventBridge(['entries' => <eventEntriesJsonPath>]);
+$awsEBCli = new EventBridge(['entries' => <eventEntriesJson>]);
 
 $result = $awsEBCli->putEvents();
 ```
