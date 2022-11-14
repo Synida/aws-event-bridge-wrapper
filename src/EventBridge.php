@@ -14,9 +14,17 @@ use synida\AwsEventBridgeWrapper\validation\InputValidator;
  * @package synida\AwsEventBridgeWrapper
  *
  * @property InputValidator $inputValidator
+ * @property string $path
  */
 class EventBridge
 {
+    /**
+     * Path of the json file that contains the event entries
+     *
+     * @var string
+     */
+    protected string $path;
+
     /**
      * Input validator class
      *
@@ -39,20 +47,29 @@ class EventBridge
         $this->inputValidator->validateInput($options);
 
         // Returns with the path of the entries' parameter.
-        $path = $this->getEntriesPath($options);
-
-        shell_exec("aws events put-events --entries {$path}");
+        $this->path = $this->getEntriesPath($options);
     }
 
-        /**
-         * Returns with the path of the entries' parameter.
-         *
-         * @param array $options
-         * @return string
-         * @author Synida Pry
-         */
-        protected function getEntriesPath(array $options): string
-        {
-            return (string)($options['path']);
-        }
+    /**
+     * Executes the previously constructed put-events command
+     *
+     * @return string|false|null
+     * @author Synida Pry
+     */
+    public function putEvents()
+    {
+        return shell_exec("aws events put-events --entries {$this->path}");
+    }
+
+    /**
+     * Returns with the path of the entries' parameter.
+     *
+     * @param array $options
+     * @return string
+     * @author Synida Pry
+     */
+    protected function getEntriesPath(array $options): string
+    {
+        return (string)($options['path']);
+    }
 }
