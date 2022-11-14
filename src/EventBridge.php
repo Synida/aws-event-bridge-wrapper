@@ -70,6 +70,6 @@ class EventBridge
      */
     protected function getEntriesPath(array $options): string
     {
-        return (string)($options['path']);
+        return (string)($options['entries']);
     }
 }
