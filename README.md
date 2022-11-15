@@ -4,8 +4,11 @@ Minimalist package to support the `aws events put-events --entries <entries>` co
 
 ### Basic usage:
 
-accepted fields:
-https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html#eventbridge-PutEvents-request-Entries
+Info on the PutEvents function:
+https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html
+
+Accepted fields are the ones under the `Entries` field and the following; 
+`Detail`, `DetailType`, `EventBusName`, `Resources`, `Source`, `Time`, `TraceHeader`
 
 ```
 // You put whatever details you want to pass in this array
