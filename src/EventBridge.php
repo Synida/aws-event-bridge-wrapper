@@ -15,6 +15,9 @@ use synida\AwsEventBridgeWrapper\validation\InputValidator;
  *
  * @property InputValidator $inputValidator
  * @property string $jsonPath
+ * @property string $output
+ * @property string $region
+ * @property string $command
  */
 class EventBridge
 {
@@ -24,6 +27,27 @@ class EventBridge
      * @var string
      */
     protected string $jsonPath;
+
+    /**
+     * This is where you can specify the output type
+     *
+     * @var string
+     */
+    protected string $output;
+
+    /**
+     * This is where you can specify the output type
+     *
+     * @var string
+     */
+    protected string $region;
+
+    /**
+     * Command string is stored here that is going to be executed
+     *
+     * @var string
+     */
+    protected string $command;
 
     /**
      * Input validator class
@@ -46,8 +70,50 @@ class EventBridge
         // Validates the incoming input fields.
         $this->inputValidator->validateInput($options);
 
+        $this->command = 'aws events put-events';
+
         // Returns with the path of the entries' parameter.
         $this->jsonPath = $this->getEntriesPath($options);
+
+        $this->command .= " --entries {$this->jsonPath}";
+
+        // Add region if specified
+        $this->addRegion($options);
+
+        // Adding output type if specified.
+        $this->addOutput($options);
+    }
+
+    /**
+     * Adding output type if specified.
+     *
+     * @param array $options
+     * @return void
+     * @author Synida Pry
+     */
+    public function addOutput(array $options): void
+    {
+        if (!isset($options['output'])) {
+            return;
+        }
+
+        $this->command .= " --output {$options['output']}";
+    }
+
+    /**
+     * Add region if specified
+     *
+     * @param array $options
+     * @return void
+     * @author Synida Pry
+     */
+    public function addRegion(array $options): void
+    {
+        if (!isset($options['region'])) {
+            return;
+        }
+
+        $this->command .= " --region {$options['region']}";
     }
 
     /**
@@ -58,7 +124,7 @@ class EventBridge
      */
     public function putEvents()
     {
-        return shell_exec("aws events put-events --entries {$this->jsonPath}");
+        return shell_exec($this->command);
     }
 
     /**
