@@ -10,6 +10,7 @@ https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html
 Accepted fields are the ones under the `Entries` field and the following; 
 `Detail`, `DetailType`, `EventBusName`, `Resources`, `Source`, `Time`, `TraceHeader`
 
+**Important** make sure that you are using aws cli 2+, otherwise you can expect errors on the entry fields from aws cli v1
 ```
 // You put whatever details you want to pass in this array
 $detailArray = [
