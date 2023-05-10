@@ -20,6 +20,14 @@ namespace synida\AwsEventBridgeWrapper;
  */
 class EventEntry
 {
+    protected string $Detail;
+    protected string $DetailType;
+    protected string $EventBusName;
+    protected array $Resources;
+    protected string $Source;
+    protected int $Time;
+    protected string $TraceHeader;
+
     /**
      * EventEntry constructor.
      *
