@@ -18,15 +18,16 @@ namespace synida\AwsEventBridgeWrapper;
  * @property integer $Time
  * @property string $TraceHeader
  */
+#[AllowDynamicProperties]
 class EventEntry
 {
-    protected string $Detail;
-    protected string $DetailType;
-    protected string $EventBusName;
-    protected array $Resources;
-    protected string $Source;
-    protected int $Time;
-    protected string $TraceHeader;
+    public string $Detail;
+    public string $DetailType;
+    public string $EventBusName;
+    public array $Resources;
+    public string $Source;
+    public int $Time;
+    public string $TraceHeader;
 
     /**
      * EventEntry constructor.
